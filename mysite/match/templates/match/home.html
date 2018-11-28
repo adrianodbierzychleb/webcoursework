@@ -1,0 +1,10 @@
+{% extends 'match/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<p>
+  You are at Home
+  <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+</p>
+{% endblock %}

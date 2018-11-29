@@ -1,0 +1,38 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ appname }}</title>
+	
+	
+</head>
+<body>
+
+	{% if loggedin %}
+    <div class='appname'>{{ appname }} ({{ username }}) </div>
+	{% else %}
+    <div class='appname'>{{ appname }}</div>
+    {% endif %}
+    <script src="{% static 'match/scripts.js' %}"></script>
+	<br>
+	<ul class='menu'>
+		{% if loggedin %}
+        <li><a href='/members/?view={{ username }}'>Home</a></li>
+
+	</ul>
+	<br>	
+		{% else %}
+	<ul>
+		<li><a href='/'>Home</a></li>
+		<li><a href='/signup/'>Sign up</a></li>
+		<li><a href='/login/'>Log in</a></li>
+	</ul>
+		{% endif %}
+	
+	<br>
+	{% block content %}
+	{% endblock %}
+	<br>
+</body>
+</html>

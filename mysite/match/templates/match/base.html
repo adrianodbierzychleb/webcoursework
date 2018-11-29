@@ -4,11 +4,11 @@
   <head>
     <meta charset="utf-8">
 
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %} {% endblock %}</title>
 
         <link rel="stylesheet" type="text/css" href="{% static 'match/styles/main.css' %}">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-        {% block stylesheet %}{% endblock %}
+        {% block stylesheet %} {% endblock %}
 
   </head>
 
@@ -16,17 +16,7 @@
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-8">
-          {% if messages %}
-
-            {% for message in messages %}
-              <div class="alert alert-{{message.tags}}"> {{message}} </div>
-            {% endfor %}
-
-          {% endif %}
-
-          {% block content %}
-
-          {% endblock %}
+          {% block content %} {% endblock %}
         </div>
       </div>
     </main>
@@ -37,8 +27,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="{% static 'match/scripts/main.js' %}"></script>
 
-    {% block javascript %}
-    {% endblock %}
+    {% block javascript %} {% endblock %}
 
   </body>
 </html>

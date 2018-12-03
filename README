@@ -1,3 +1,14 @@
 Notes:
 pip install pillow
 pip install django-crispy-forms
+
+
+hobbies multipule choice working
+
+add dob, gender, hobbies must be fill out on first login
+
+display top 5  matched list of users with similar hobbies
+
+seperate page that loads full list of profiles 
+
+option to filter matches based on gender, age and hobby

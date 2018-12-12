@@ -1,0 +1,25 @@
+{% extends 'match/base.html' %}
+
+
+{% load static %}
+
+{% block content %}
+
+  <h1>Kurwiorz</h1>
+
+<form method='GET' action=''>
+<input type='text' name='querygender' placeholder='Gender' value='{{ request.GET.querygender }}'/>
+<input type='date' name='queryagemin' placeholder='minage' value='{{ request.GET.queryagemin }}'/>
+<input type='date' name='queryagemax' placeholder='maxage' value='{{ request.GET.queryagemax }}'/>
+<input type='submit' value='Search'/>
+</form>
+
+
+{{ object_list }}
+
+{% for instance in object_list %}
+    <p>{{ instance.user }} - {{ instance.gender }} - {{instance.birth_date}}</p>
+
+{% endfor %}
+
+{% endblock %}

@@ -1,6 +1,10 @@
 {% extends 'match/base.html' %}
-
+{% load crispy_forms_tags %}
 {% load static %}
+
+{% block stylesheet %}
+  {{ p_form.media }}
+{% endblock %}
 
 {% block content %}
   <div class="content-section">
@@ -9,9 +13,24 @@
         <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
         <h2 class="account-heading">{{ user.username }}</h2>
         <p class="text-secondary">{{ user.email }}</p>
-        <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+        <a class="btn btn-outline-info" href="{% url 'logout' %}">Logout</a>
       </div>
     </div>
+    <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Profile Info</legend>
+        {{ u_form|crispy }}
+        {{ p_form|crispy }}
+    </fieldset>
+    <div class="form-group">
+        <button class="btn btn-outline-info" type="submit">Update</button>
+    </div>
+    </form>
+        <a class="btn btn-outline-info" href="{% url 'matches' %}">Find matches ></a>
   </div>
 
+{% endblock %}
+
+{% block javascript %}
 {% endblock %}

@@ -1,14 +1,16 @@
 Notes:
 pip install pillow
 pip install django-crispy-forms
+pip install django-bootstrap4
+pip install django-bootstrap-datepicker-plus
 
+To Do-Do:
 
-hobbies multipule choice working
-
-add dob, gender, hobbies must be fill out on first login
-
-display top 5  matched list of users with similar hobbies
-
-separate page that loads full list of profiles 
-
-option to filter matches based on gender, age and hobby
+image crop and resize
+displaying hobbies
+new profile image preview
+-display DOB
+-update DOB
+find matches
+display matches
+filter matches

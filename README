@@ -6,11 +6,6 @@ pip install django-bootstrap-datepicker-plus
 
 To Do-Do:
 
-image crop and resize
-displaying hobbies
+image crop
 new profile image preview
--display DOB
--update DOB
-find matches
-display matches
-filter matches
+

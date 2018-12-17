@@ -8,35 +8,40 @@
 
 {% block content %}
   <div class="content-section">
+        <div class="row">
+            <a class="btn btn-outline-info" href="{% url 'profile' %}">< Profile</a>
+            <label for="min_age">Minimum age: </label>
+            <input type="number" id="min_age" min="18" max="50" step="1">
+            <label for="max_age">Maximum age: </label>
+            <input type="number" id="max_age" min="19" max="100" step="1">
 
-        <a class="btn btn-outline-info" href="{% url 'profile' %}">< Profile</a>
-        <label for="min_age">Minimum age: </label>
-        <input type="number" id="min_age" min="18" max="50" step="1">
-        <label for="max_age">Maximum age: </label>
-        <input type="number" id="max_age" min="19" max="100" step="1">
+            <label for="gender">Gender:</label>
+            <select id="gender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option selected value="None">----</option>
+            </select>
+            <button id="filter" class="btn btn-outline-info" type="submit">Filter</button>
+        </div>
 
-        <label for="gender">Gender:</label>
-        <select id="gender">
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option selected value="None">----</option>
-        </select>
-        <button id="filter" class="btn btn-outline-info" type="submit">Filter</button>
-
-        {% for entry in user_list %}
-                <div class="user media">
+        <div id="list">
+            {% for entry in user_list %}
+                <div class="matched_user row">
+                <div class="user media col-sm" id="{{ entry.user.username }}">
                     <img class="rounded-circle account-img" src="{{ entry.user.profile.image.url }}">
-                    <h3 class="account-heading">{{ entry.user.username }}</h3>
-                    <h5 class="email text-secondary">{{ entry.user.email }}</h5>
-                    <h5 class="text-secondary">{{ entry.matched_hobbies }}</h5>
-                    <ol>
+                </div>
+                    <h3 class="account-heading col-sm">{{ entry.user.username }}</h3>
+                    <h5 class="email text-secondary col-sm">{{ entry.user.email }}</h5>
+                    <ol class ="col-sm">
                         {% for hobby in entry.user.profile.hobbies.all %}
                             <li> {{ hobby.name }}</li>
                         {% endfor %}
                     </ol>
-                    <h6 class="age"> {{ entry.user.profile.birth_date }}</h6>
+                    <h6 class="age col-sm"> Age : {{ entry.user.profile.birth_date }}</h6>
                 </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
+
 
 
 
@@ -45,35 +50,5 @@
   </div>
 
 {% endblock %}
-
 {% block javascript %}
-
-    <script type="text/javascript">
-        $(function () {
-            $("#filter").click(function () {
-                let minAge = $("#min_age").val();
-                let maxAge = $("#max_age").val();
-                let gender = $("#gender").val();
-                console.log("min : " + minAge + "\n" + "max : " + maxAge + "\n" + "gender : " + gender + "\n");
-                $.ajax({
-                    url: "/filtering",
-                    dataType: "json",
-                    data: {
-                        minAge: minAge,
-                        maxAge: minAge,
-                        gender: gender
-                    },
-                    success: function (data) {
-                        $.each(data, function (index, dict) {
-                            console.log(index + " : " + JSON.stringify(dict));
-                        });
-                    },
-                    error: function () {
-                        console.log("filter error");
-                    }
-                });
-            });
-        });
-    </script>
-
 {% endblock %}

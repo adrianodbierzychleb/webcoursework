@@ -18,11 +18,11 @@ class Profile(models.Model):
     birth_date = models.DateField(null=True)
 
     GENDER_CHOICES = (
-        ('M', 'Male'),
-        ('F', 'Female'),
+        ('Male', 'Male'),
+        ('Female', 'Female'),
     )
 
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    gender = models.CharField(max_length=6, choices=GENDER_CHOICES)
 
     hobbies = models.ManyToManyField(Hobby, blank=True)
 
@@ -31,8 +31,8 @@ class Profile(models.Model):
 
         img = Image.open(self.image.path)
 
-        if img.height > 300 or img.width > 300:
-            output_size = (300, 300)
+        if img.height > 200 or img.width > 200:
+            output_size = (200, 200)
             img.thumbnail(output_size)
             img.save(self.image.path)
 
